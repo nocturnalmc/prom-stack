@@ -1,1 +1,5 @@
+# node_exporter
+docker run -d --restart unless-stopped --name node_exporter-$(hostname) --net="host" --pid="host" -v "/:/host:ro,rslave" quay.io/prometheus/node-exporter:latest --path.rootfs=/host --collector.systemd --collector.processes --web.listen-address=:4000
+
+# cAdvisor
 docker run -d --restart unless-stopped --name cadvisor-$(hostname) --volume=/:/rootfs:ro --volume=/var/run:/var/run:ro --volume=/sys:/sys:ro --volume=/var/lib/docker/:/var/lib/docker:ro --volume=/dev/disk/:/dev/disk:ro --network prometheus-network gcr.io/cadvisor/cadvisor:latest
